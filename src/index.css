@@ -1,3 +1,6 @@
+* {
+  font-family: 'Roboto', sans-serif;
+}
 html, body {
   padding:0;
   margin:0;
@@ -5,7 +8,7 @@ html, body {
   width:100%;
 }
 /* header start */
-.header {
+.navHeader {
   height:50px;
   width:100%;
   border-bottom:2px solid #dadfea;
@@ -33,17 +36,27 @@ html, body {
   background-position:center;
   background-repeat: no-repeat;
   background-size:65px;
-  padding:0 30px;
+  padding:0 38px;
 }
 .Products {
+  margin:0;
   padding: 0 10px;
   border-left: 2px solid #dadfea;
   border-right: 2px solid #dadfea;
+}
+.Products:hover {
+  background-color:#4382FF;
+  color:white;
 }
 
 .Categories {
   padding: 0 10px;
   border-right: 2px solid #dadfea;
+  margin:0;
+}
+.Categories:hover {
+  background-color:#4382FF;
+  color:white;
 }
 
 .rightNav {
@@ -65,5 +78,84 @@ html, body {
 }
 
 
-/* header end */
+
+/* ################# header end #################*/
+
+/* Products page Start */
+.image img{
+  min-height:0;
+  max-height:150px;
+  max-width:100px;
+  margin-left:20px;
+}
+.productContainer {
+  padding-bottom:10px;
+  border-bottom:2px solid #dadfea;
+}
+/* Products page End */
+
+
+
+/*footer start */
+.footer {
+  border-top:2px solid #dadfea;
+  height:80px;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+.topFoot ul{
+  height: 40px;
+  width:100%;
+  display:flex;
+  justify-content: space-evenly;
+  padding: 0;
+}
+.topFoot ul li {
+  border-right: 1px solid #dadfea;
+  border-left: 1px solid #dadfea;
+  list-style: none;
+  font-size:10px;
+  padding:10px;
+}
+.topFoot ul li:hover {
+  cursor:pointer;
+}
+.botFoot i{
+  padding: 0 10px;
+  font-size: 25px;
+  transition: transform .2s;
+  color: #2a2a2a;
+}
+.reddit:hover {
+  cursor: pointer;
+  color:#FF4500;
+  transform:scale(1.5);
+}
+.youtube:hover {
+  cursor: pointer;
+  color:red;
+  transform:scale(1.5);
+}
+.facebook:hover {
+  cursor: pointer;
+  color:#3A559F;
+  transform:scale(1.5);
+}
+.twitter:hover {
+  cursor: pointer;
+  background: -webkit-linear-gradient(top, rgba(114,205,246,1) 0%,rgba(67,157,214,1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform:scale(1.5);
+}
+.instagram:hover {
+  cursor: pointer;
+  background: -webkit-linear-gradient(45deg, rgba(254,214,120,1) 0%,rgba(248,103,42,1) 21%,rgba(221,55,130,1) 45%,rgba(172,53,175,1) 70%,rgba(76,99,219,1) 93%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform:scale(1.5);
+}
 
