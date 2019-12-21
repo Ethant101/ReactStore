@@ -3,11 +3,20 @@ import React from 'react';
 
 
 class Header extends React.Component {
-    constructor() {
-        super();
-    }
+
     cartCount = 0;
+    showCart = () => {
+
+    };
     render() {
+        // let cartContent = this.state.cart.map((item) => (
+        //     <div className='cartItem'>
+        //         <img src={this.cart.img} alt='pic' />
+        //         <span> {this.cart.price} </span>
+        //         <i className="fas fa-times-circle x"> </i>
+        //     </div>
+        //     )
+        // );
         return (
             <div className='navHeader'>
                 <div className='leftNav'>
@@ -19,7 +28,25 @@ class Header extends React.Component {
                 </div>
                 <div className='rightNav'>
                     <div className='cartCount'>{this.cartCount}</div>
-                    <i className="fas fa-shopping-cart"> </i>
+                    <i onClick={this.showCart} className="fas fa-shopping-cart cart"> </i>
+                    <i className="dropdown icon"> </i>
+                </div>
+                <div className='cartContent'>
+                    {/*{cartContent}*/}
+                    <div className='cartItem'>
+                        <div className='itemLeft'>
+                            <img src='https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6211/6211009_sd.jpg' alt='tv' />
+                            <span>$199.99</span>
+                        </div>
+                        <i className="fas fa-times-circle x"> </i>
+                    </div>
+                    <div className='cartItem'>
+                        <div className='itemLeft'>
+                            <img src='https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6290/6290163_sd.jpg' alt='tv' />
+                            <span>$999.99</span>
+                        </div>
+                        <i className="fas fa-times-circle x"> </i>
+                    </div>
                 </div>
             </div>
         )

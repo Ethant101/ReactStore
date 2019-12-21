@@ -9,6 +9,7 @@ html, body {
 }
 /* header start */
 .navHeader {
+  position:relative;
   height:50px;
   width:100%;
   border-bottom:2px solid #dadfea;
@@ -21,6 +22,7 @@ html, body {
   background-size: cover;
 }
 .leftNav {
+  position:relative;
   height:100%;
   width:60%;
   display:flex;
@@ -40,23 +42,42 @@ html, body {
 }
 .Products {
   margin:0;
-  padding: 0 10px;
+  padding: 10px 10px;
   border-left: 2px solid #dadfea;
   border-right: 2px solid #dadfea;
 }
 .Products:hover {
   background-color:#4382FF;
   color:white;
+  border-radius: 3px;
 }
 
 .Categories {
-  padding: 0 10px;
+  position:relative;
+  padding: 10px 10px;
   border-right: 2px solid #dadfea;
   margin:0;
 }
 .Categories:hover {
   background-color:#4382FF;
   color:white;
+  border-radius: 3px;
+}
+.catDrop {
+  position: absolute;
+  top:-1px;
+  right:350px;
+  height:90px;
+  width:150px;
+  margin-top:50px;
+  background-color:#4382FF;
+  color:white;
+  animation-duration:1s;
+  animation-name:Dropdown;
+}
+.Categories:hover @keyframes Dropdown {
+  from {height:0;}
+  to {height:80px;}
 }
 
 .rightNav {
@@ -76,8 +97,61 @@ html, body {
   border-radius: 50%;
   background-color:#ffffff;
 }
+.cart {
+  font-size:20px;
+}
+.cart:hover {
+  cursor:pointer;
+}
+.icon {
+  margin:0 !important;
+}
+.cartContent {
+  z-index:9;
+  position:absolute;
+  height:200px;
+  width:200px;
+  background-color:white;
+  border:2px solid #4382FF;
+  right:0;
+  top:48px;
+  overflow-y:hidden;
+}
+.cartItem {
+  height:50px;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:5px;
+  border-bottom:1px solid #dadfea;
+  background-color:white;
+}
+.cartItem:hover {
+  background-color: #e8e8e8;
+  cursor:pointer;
+}
+.itemLeft {
+  display:flex;
+  align-items: center;
+}
+.itemLeft img {
+  min-height:0;
+  max-height:40px;
+  max-width:100px;
+  padding-right:10px;
+}
+.itemLeft span {
+  padding:5px;
+  color:white;
+  border-radius:4px;
+  background-color: #4382FF;
+}
+.x:hover {
+  color: #b70000;
+  cursor:pointer;
 
-
+}
 
 /* ################# header end #################*/
 
@@ -119,6 +193,7 @@ html, body {
   list-style: none;
   font-size:10px;
   padding:10px;
+  margin-right:5px;
 }
 .topFoot ul li:hover {
   cursor:pointer;
@@ -159,3 +234,67 @@ html, body {
   transform:scale(1.5);
 }
 
+/*########### End Footer ############*/
+
+/*############Login Start ############*/
+.loginContainer {
+  height:190vh;
+  width:190vh;
+  padding:0;
+  margin:0;
+  position:relative;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  background-image:url("LoginBackground2.png");
+  background-size: cover;
+  background-position:center;
+
+}
+.loginModal {
+  height:250px;
+  width:200px;
+  box-shadow: 0 0 6px 2px rgba(0,0,0,0.55);
+  background-color:white;
+  border-radius: 5px;
+}
+.loginHeader {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.loginHeader h3 {
+  margin-top:5px;
+  padding:0 0 3px 0;
+  color: #4382FF;
+  border-bottom: 2px solid #4382FF;
+}
+.userIns {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  margin:10px;
+}
+.userIns > * {
+  width: 90%;
+  height: 30px;
+  border: 1px solid #dadfea;
+  border-radius: 2px;
+  margin: 5px;
+}
+.forgotPassword {
+  display:flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0 5px;
+  color:blue;
+}
+.loginSubmit {
+  width:95%;
+  height:35px;
+  margin:40px auto;
+  display:flex;
+  justify-content: center;
+  color:white;
+  background-color:#4382FF;
+}

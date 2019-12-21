@@ -1,16 +1,16 @@
 import React from 'react';
 import axios from 'axios';
+
 import ProductDetail from "./productDetail";
+import Header from "../header";
+import Footer from "../footer";
 
 class ProductsPage extends React.Component {
-    constructor() {
-        super();
-
-        this.state = {
-            products: [],
-        }
-    }
-
+    state = {
+        products: [],
+        cart: []
+    };
+    //products is array of ids of products from api
     componentDidMount() {
         axios.get('https://my-json-server.typicode.com/tdmichaelis/json-api/products')
             .then((res) => {
@@ -22,6 +22,12 @@ class ProductsPage extends React.Component {
             <ProductDetail />
         )
     };
+    handleAddToCart = (e) => {
+        console.log(e.target.value);
+        this.setState( { cart: e.target.value });
+
+    };
+    //TODO: on click of add to cart increments cart and updates cart
     render() {
 
         const listOfProducts = this.state.products.map((item) => (
@@ -41,10 +47,12 @@ class ProductsPage extends React.Component {
                         {/*Additional Details*/}
                     </div>
                     <div className="extra">
-                        <div className="ui right floated primary button">
+                        <button onClick={this.handleAddToCart}
+                                value={item.id}
+                                className="ui right floated primary button">
                             Add to Cart
                             <i className="right chevron icon"> </i>
-                        </div>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -52,8 +60,12 @@ class ProductsPage extends React.Component {
         );
         // console.log(listOfProducts);
         return (
-            <div className="ui divided items productContainer">
-                {listOfProducts}
+            <div>
+                <Header />
+                <div className="ui divided items productContainer">
+                    {listOfProducts}
+                </div>
+                <Footer />
             </div>
         )
     }
