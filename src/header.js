@@ -1,4 +1,5 @@
 import React from 'react';
+import CategoryDropdown from "./components/CategoryDropdown";
 //import Logo from 'assets/spiderManArt.png';
 
 
@@ -8,23 +9,20 @@ class Header extends React.Component {
     showCart = () => {
 
     };
+    showDropdown = () => {
+
+
+    };
+
     render() {
-        // let cartContent = this.state.cart.map((item) => (
-        //     <div className='cartItem'>
-        //         <img src={this.cart.img} alt='pic' />
-        //         <span> {this.cart.price} </span>
-        //         <i className="fas fa-times-circle x"> </i>
-        //     </div>
-        //     )
-        // );
+        // const [isShown, setIsShown] = useState(false);
         return (
             <div className='navHeader'>
                 <div className='leftNav'>
                     <div className='logoHeader'>
                     </div>
                     <h2 className='Products'>Products</h2>
-                    <h2 className='Categories'>Categories</h2>
-                    <div className="productDrop"> </div>
+                    <h2 className='Categories' {/*onMouseEnter={() => setIsShown(true)}*/}>Categories</h2>
                 </div>
                 <div className='rightNav'>
                     <div className='cartCount'>{this.cartCount}</div>

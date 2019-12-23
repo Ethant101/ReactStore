@@ -25,13 +25,13 @@ class ProductsPage extends React.Component {
     handleAddToCart = (e) => {
         console.log(e.target.value);
         this.setState( { cart: e.target.value });
+        console.log(this.state);
 
     };
     //TODO: on click of add to cart increments cart and updates cart
     render() {
-
         const listOfProducts = this.state.products.map((item) => (
-            <div key={item.id} className="item">
+            <div key={item.id} value={item} className="item">
                 <div className="image">
                     <img src={item.img} alt='img' />
                 </div>
