@@ -7,6 +7,6 @@ const reducer = combineReducers({
     productReducers
 });
 
-const store = createStore(reducer, applyMiddleware(axiosMiddleware(axios)),);
+const store = createStore(reducer, applyMiddleware(axiosMiddleware(axios)));
 
 export default store;
