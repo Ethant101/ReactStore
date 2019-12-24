@@ -1,13 +1,11 @@
 import React from 'react';
-import axios from 'axios';
-import {Link} from "react-router-dom";
-import {connect} from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import ProductDetail from "./productDetail";
-import Header from "../header";
-import Footer from "../footer";
-import {withRouter} from "react-router-dom";
-import {getProductList} from "../store/productListActions";
+import ProductDetail from './productDetail';
+import Header from '../header';
+import Footer from '../footer';
+import { getProductList } from '../store/productListActions';
 
 export class ProductsPage extends React.Component {
     constructor(props) {
@@ -20,7 +18,7 @@ export class ProductsPage extends React.Component {
 
     //products is array of ids of products from api
     componentDidMount() {
-        this.props.addProductsToProps()
+        this.props.addProductsToProps();
         // axios.get('https://my-json-server.typicode.com/tdmichaelis/json-api/products')
         //     .then((res) => {
         //         this.setState({products: res.data})
@@ -30,14 +28,15 @@ export class ProductsPage extends React.Component {
     PopulateModal = (item) => {
         return (
             <ProductDetail/>
-        )
+        );
     };
+
     handleAddToCart = (e) => {
         console.log(e.target.value);
-        this.setState({cart: e.target.value});
+        this.setState({ cart: e.target.value });
         console.log(this.state);
-
     };
+
     listOfProducts = (products) => {
         return products.map((item) => {
                 let path = `/details/${item.id}`;
@@ -69,40 +68,37 @@ export class ProductsPage extends React.Component {
                             </div>
                         </div>
                     </div>
-                )
+                );
             }
         );
     };
 
-
     //TODO: on click of add to cart increments cart and updates cart
     render() {
-        // console.log(this.props)
-
-        // console.log(listOfProducts);
         return (
             <div>
                 <Header/>
                 <div className="ui divided items productContainer">
-                    {this.listOfProducts(this.state.products)}
+                    {/*getting product list from the prop added by the redux map state to props function*/}
+                    {this.listOfProducts(this.props.productList)}
                 </div>
                 <Footer/>
             </div>
-        )
+        );
     }
 }
 
-function mapStateToProps(state) {
-    console.log(state, 'state');
+function mapStateToProps(reduxState) {
+    // this returned object gets added to props by redux via the connect function below black magic
     return {
-        productList: state.data
-    }
+        productList: reduxState.productReducers.productList
+    };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-       addProductsToProps: () => dispatch(getProductList())
-    }
+        addProductsToProps: () => dispatch(getProductList())
+    };
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProductsPage));

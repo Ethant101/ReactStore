@@ -1,7 +1,6 @@
 import React from 'react';
-import CategoryDropdown from "./components/CategoryDropdown";
-//import Logo from 'assets/spiderManArt.png';
 
+//import Logo from 'assets/spiderManArt.png';
 
 class Header extends React.Component {
 
@@ -10,7 +9,6 @@ class Header extends React.Component {
 
     };
     showDropdown = () => {
-
 
     };
 
@@ -23,7 +21,7 @@ class Header extends React.Component {
                     </div>
                     <h2 className='Products'>Products</h2>
                     {/*onMouseEnter={() => setIsShown(true)} put below*/}
-                    <h2 className='Categories' >Categories</h2>
+                    <h2 className='Categories'>Categories</h2>
                 </div>
                 <div className='rightNav'>
                     <div className='cartCount'>{this.cartCount}</div>
@@ -34,21 +32,21 @@ class Header extends React.Component {
                     {/*{cartContent}*/}
                     <div className='cartItem'>
                         <div className='itemLeft'>
-                            <img src='https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6211/6211009_sd.jpg' alt='tv' />
+                            <img src='https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6211/6211009_sd.jpg' alt='tv'/>
                             <span>$199.99</span>
                         </div>
                         <i className="fas fa-times-circle x"> </i>
                     </div>
                     <div className='cartItem'>
                         <div className='itemLeft'>
-                            <img src='https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6290/6290163_sd.jpg' alt='tv' />
+                            <img src='https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6290/6290163_sd.jpg' alt='tv'/>
                             <span>$999.99</span>
                         </div>
                         <i className="fas fa-times-circle x"> </i>
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 }
 
