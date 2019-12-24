@@ -1,31 +1,29 @@
 import React from 'react';
-import axios from "axios";
+import axios from 'axios';
 
 class ProductDetail extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            product: {},
-        }
+            product: {}
+        };
     }
-
-
-
 
     componentDidMount() {
         let id = this.props.match.params.id;
+        // probably build a reducer and action to do this next line
         axios.get(`https://my-json-server.typicode.com/tdmichaelis/json-api/products/${id}`)
             .then((res) => {
-                this.setState({product: res.data}, ()=>{
-                    console.log(this.state)
-                })
-            })
+                this.setState({ product: res.data }, () => {
+                    console.log(this.state);
+                });
+            });
     }
 
     render() {
-
-
         let id = this.props.match.params.id;
+        console.log('------->id', id);
+
         return (
             <div className="blah">
                 <i className="close icon"> </i>
@@ -34,7 +32,7 @@ class ProductDetail extends React.Component {
                 </div>
                 <div className="image content">
                     <div className="ui medium image">
-                        <img src="/images/avatar/large/chris.jpg" />
+                        <img src="/images/avatar/large/chris.jpg"/>
                     </div>
                     <div className="description">
                         <div className="ui header">We've auto-chosen a profile image for you.</div>
@@ -54,9 +52,8 @@ class ProductDetail extends React.Component {
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 }
-
 
 export default ProductDetail;
