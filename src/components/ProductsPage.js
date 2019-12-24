@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import {Link} from "react-router-dom";
+import { connect } from 'react-redux';
 
 import ProductDetail from "./productDetail";
 import Header from "../header";
@@ -10,65 +12,89 @@ class ProductsPage extends React.Component {
         products: [],
         cart: []
     };
+
     //products is array of ids of products from api
     componentDidMount() {
         axios.get('https://my-json-server.typicode.com/tdmichaelis/json-api/products')
             .then((res) => {
-                this.setState({ products: res.data })
+                this.setState({products: res.data})
             })
     }
+
     PopulateModal = (item) => {
         return (
-            <ProductDetail />
+            <ProductDetail/>
         )
     };
     handleAddToCart = (e) => {
         console.log(e.target.value);
-        this.setState( { cart: e.target.value });
+        this.setState({cart: e.target.value});
         console.log(this.state);
 
     };
+    listOfProducts = (products) => {
+        return products.map((item) => {
+            let path = `/details/${item.id}`;
+            return (
+
+                <div key={item.id} value={item} className="item">
+                    <div className="image">
+                        <img src={item.img} alt='img'/>
+                    </div>
+                    <div className="content">
+                        <Link to={path}>{item.title}</Link>
+                        <a className="header">{item.title}</a>
+                        <div className="meta">
+                            <span>${item.price}</span>
+                        </div>
+                        <div className="description">
+                            <p>{item.description}</p>
+                        </div>
+                        <div className="extra">
+                            {/*Additional Details*/}
+                        </div>
+                        <div className="extra">
+                            <button onClick={this.handleAddToCart}
+                                    value={item.id}
+                                    className="ui right floated primary button">
+                                Add to Cart
+                                <i className="right chevron icon"> </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+        );
+    };
+
+
     //TODO: on click of add to cart increments cart and updates cart
     render() {
-        const listOfProducts = this.state.products.map((item) => (
-            <div key={item.id} value={item} className="item">
-                <div className="image">
-                    <img src={item.img} alt='img' />
-                </div>
-                <div className="content">
-                    <a className="header">{item.title}</a>
-                    <div className="meta">
-                        <span>${item.price}</span>
-                    </div>
-                    <div className="description">
-                        <p>{item.description}</p>
-                    </div>
-                    <div className="extra">
-                        {/*Additional Details*/}
-                    </div>
-                    <div className="extra">
-                        <button onClick={this.handleAddToCart}
-                                value={item.id}
-                                className="ui right floated primary button">
-                            Add to Cart
-                            <i className="right chevron icon"> </i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            )
-        );
+
         // console.log(listOfProducts);
         return (
             <div>
-                <Header />
+                <Header/>
                 <div className="ui divided items productContainer">
-                    {listOfProducts}
+                    {this.listOfProducts(this.state.products)}
                 </div>
-                <Footer />
+                <Footer/>
             </div>
         )
     }
 }
 
-export default ProductsPage;
+function mapStateToProps(state) {
+    console.log(state);
+    return {
+
+    }
+}
+function mapDispatchToProps(dispatch) {
+    console.log(dispatch);
+    return {
+
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsPage);
+//export default ProductsPage;
