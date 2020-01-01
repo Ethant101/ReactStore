@@ -1,62 +1,71 @@
 import React from 'react';
-import axios from "axios";
+import axios from 'axios';
+import $ from 'jquery';
+import {Link} from "react-router-dom";
+import Header from "./header";
+import Footer from "./footer";
 
 class ProductDetail extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            product: {},
-        }
+            product: {}
+        };
     }
-
-
-
 
     componentDidMount() {
         let id = this.props.match.params.id;
+        // probably build a reducer and action to do this next line
         axios.get(`https://my-json-server.typicode.com/tdmichaelis/json-api/products/${id}`)
             .then((res) => {
-                this.setState({product: res.data}, ()=>{
-                    console.log(this.state)
-                })
-            })
+                this.setState({ product: res.data }, () => {
+                    console.log(this.state);
+                });
+            });
     }
+    createModal = () => {
+        $('.ui.modal')
+            .modal('show')
+        ;
+    };
+
+    path = `/list`;
 
     render() {
-
-
         let id = this.props.match.params.id;
+        console.log('------->id', id);
+
         return (
-            <div className="blah">
-                <i className="close icon"> </i>
-                <div className="header">
-                    {this.state.product.title}
+            <div>
+                <Header />
+                <div className="ui modal">
+                    <div className="header">
+                        {this.state.product.title}
+                    </div>
+                    <div className="image content">
+                        <div className="ui medium image">
+                            <img src={this.state.product.img}/>
+                        </div>
+                        <div className="description">
+                            <div className="ui header">We've auto-chosen a profile image for you.</div>
+                            <p>{this.state.product.description}</p>
+                            <p>{this.state.product.rating}</p>
+                        </div>
+                    </div>
+                    <div className="actions">
+                        <div className="ui black deny button">
+                            <Link to={this.path}>Return To Home</Link>
+                        </div>
+                        <div className="ui positive right labeled icon button">
+                            Add To Cart
+                            <i className="checkmark icon"> </i>
+                        </div>
+                    </div>
                 </div>
-                <div className="image content">
-                    <div className="ui medium image">
-                        <img src="/images/avatar/large/chris.jpg" />
-                    </div>
-                    <div className="description">
-                        <div className="ui header">We've auto-chosen a profile image for you.</div>
-                        <p>We've grabbed the following image from the <a href="https://www.gravatar.com"
-                                                                         target="_blank">gravatar</a> image associated
-                            with your registered e-mail address.</p>
-                        <p>Is it okay to use this photo?</p>
-                    </div>
-                </div>
-                <div className="actions">
-                    <div className="ui black deny button">
-                        Nope
-                    </div>
-                    <div className="ui positive right labeled icon button">
-                        Yep, that's me
-                        <i className="checkmark icon"> </i>
-                    </div>
-                </div>
+                <Footer />
             </div>
-        )
+        );
     }
 }
-
 
 export default ProductDetail;

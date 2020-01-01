@@ -55,8 +55,10 @@ html, body {
 .Categories {
   position:relative;
   padding: 10px 10px;
-  border-right: 2px solid #dadfea;
-  margin:0;
+  border:none;
+  background-color:white;
+  font-size:25px;
+  margin:10px;
 }
 .Categories:hover {
   background-color:#4382FF;
@@ -187,6 +189,9 @@ html, body {
   padding-bottom:10px;
   border-bottom:2px solid #dadfea;
 }
+.extra .ui.right.floated.primary.button, .description p {
+  margin-right:20px;
+}
 /* Products page End */
 
 
@@ -310,6 +315,9 @@ html, body {
   margin: 0 5px;
   color:blue;
 }
+.forgotPassword:hover {
+  cursor:pointer;
+}
 .loginSubmit {
   width:95%;
   height:35px;
@@ -318,4 +326,10 @@ html, body {
   justify-content: center;
   color:white;
   background-color:#4382FF;
+}
+/*#########Product Details*/
+.ui.modal {
+  display: block;
+  position:relative;
+  margin:auto auto;
 }

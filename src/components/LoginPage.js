@@ -15,15 +15,28 @@ class LoginPage extends React.Component {
             pass: e.target.value,
         })
     };
+    
     forgotPass = () => {
         alert('Username:admin\npassword:password')
     };
+
+    //admin login
     loginCred = {
         username:"admin",
         password:"password"
     };
     login = () => {
-        //if()
+        if(this.state.user === this.loginCred.username &&
+            this.state.pass === this.loginCred.password) {
+            //redirect to products page
+        }
+        else {
+            //clears inputs
+            this.setState({user:'', pass:'',});
+            //tells user password
+            return this.forgotPass();
+
+        }
     };
 
     render() {

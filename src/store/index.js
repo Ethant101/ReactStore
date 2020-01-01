@@ -1,14 +1,13 @@
-import React, {Component} from 'react';
-import {createStore, combineReducers, applyMiddleware} from 'redux';
-import axiosMiddleware from 'redux-axios-middleware'
-import productReducers from "./productReducers";
+import { applyMiddleware, combineReducers, createStore } from 'redux';
+import axiosMiddleware from 'redux-axios-middleware';
+import productReducers from './productReducers';
 import axios from 'axios';
 
 const reducer = combineReducers({
-    productReducers
+    productReducers,
+    //cartContentReducers
 });
 
-const store = createStore(reducer, applyMiddleware(axiosMiddleware(axios)));
-
-
-export default store
+const store = createStore(reducer, applyMiddleware(axiosMiddleware(axios)),);
+console.log(store, 'store')
+export default store;
