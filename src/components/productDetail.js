@@ -23,11 +23,6 @@ class ProductDetail extends React.Component {
                 });
             });
     }
-    createModal = () => {
-        $('.ui.modal')
-            .modal('show')
-        ;
-    };
 
     path = `/list`;
 

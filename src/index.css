@@ -129,53 +129,6 @@ html, body {
 .icon {
   margin:0 !important;
 }
-.cartContent {
-  z-index:9;
-  position:absolute;
-  height:200px;
-  width:200px;
-  background-color:white;
-  border:2px solid #4382FF;
-  right:0;
-  top:48px;
-  overflow-y:hidden;
-}
-.cartItem {
-  height:50px;
-  width:100%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:5px;
-  border-bottom:1px solid #dadfea;
-  background-color:white;
-}
-.cartItem:hover {
-  background-color: #e8e8e8;
-  cursor:pointer;
-}
-.itemLeft {
-  display:flex;
-  align-items: center;
-}
-.itemLeft img {
-  min-height:0;
-  max-height:40px;
-  max-width:100px;
-  padding-right:10px;
-}
-.itemLeft span {
-  padding:5px;
-  color:white;
-  border-radius:4px;
-  background-color: #4382FF;
-}
-.x:hover {
-  color: #b70000;
-  cursor:pointer;
-
-}
-
 /* ################# header end #################*/
 
 /* Products page Start */

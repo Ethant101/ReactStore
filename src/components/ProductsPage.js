@@ -6,6 +6,9 @@ import { connect } from 'react-redux';
 import Header from './header';
 import Footer from './footer';
 import { getProductList } from '../store/productListActions';
+import AddToCart from "./AddToCart";
+import store from "../store";
+import Product from "./Product";
 
 export class ProductsPage extends React.Component {
     constructor(props) {
@@ -27,48 +30,23 @@ export class ProductsPage extends React.Component {
         //     })
     }
 
-    handleAddToCart = (e) => {
-        this.cartCount ++;
-        this.productList.push(e.target.value);
-        this.setState({ products: this.productList, cartCounts: this.cartCount });
-        console.log(this.state);
-    };
+
 
     listOfProducts = (products) => {
         return products.map((item) => {
-                let path = `/details/${item.id}`;
                 return (
-
-                    <div key={item.id} value={item} className="item">
-                        <div className="image">
-                            <img src={item.img} alt='img'/>
-                        </div>
-                        <div className="content">
-                            <a className="header"><Link to={path}>{item.title}</Link></a>
-                            <div className="meta">
-                                <span>${item.price}</span>
-                            </div>
-                            <div className="description">
-                                <p>{item.description}</p>
-                            </div>
-                            <div className="extra">
-                                {/*Additional Details*/}
-                            </div>
-                            <div className="extra">
-                                <button onClick={this.handleAddToCart}
-                                        value={item.id}
-                                        className="ui right floated primary button">
-                                    Add to Cart
-                                    <i className="right chevron icon"> </i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    <Product product={item} path={`/details/${item.id}`}/>
                 );
             }
         );
     };
 
+    // <button onClick={this.handleAddToCart}
+    // value={item.id}
+    // className="ui right floated primary button">
+    // Add to Cart
+    // <i className="right chevron icon"> </i>
+    // </button>
 
     render() {
         return (

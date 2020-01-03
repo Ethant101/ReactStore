@@ -1,14 +1,21 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 class LoginPage extends React.Component {
     state = {
         user: '',
         pass: '',
     };
+    path = `/list`;
+    loginCred = {
+        username:"admin",
+        password:"password"
+    };
+
     handleUser = (e) => {
         this.setState({
             user: e.target.value,
-        })
+        });
     };
     handlePass = (e) => {
         this.setState({
@@ -21,21 +28,17 @@ class LoginPage extends React.Component {
     };
 
     //admin login
-    loginCred = {
-        username:"admin",
-        password:"password"
-    };
+
     login = () => {
         if(this.state.user === this.loginCred.username &&
             this.state.pass === this.loginCred.password) {
-            //redirect to products page
+            window.location = '/list';
         }
         else {
             //clears inputs
             this.setState({user:'', pass:'',});
             //tells user password
             return this.forgotPass();
-
         }
     };
 
@@ -68,7 +71,7 @@ class LoginPage extends React.Component {
                     >Forgot Password?
                     </div>
                     <button
-                        className="loginSubmit"
+                        className="loginSubmit"//add class active when pass and user is true, enables button
                         type="submit"
                         onClick={this.login}
                     >Login

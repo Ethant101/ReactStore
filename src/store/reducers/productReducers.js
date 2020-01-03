@@ -1,4 +1,4 @@
-import { LOAD, LOAD_SUCCESS } from './productListActions';
+import { LOAD, LOAD_SUCCESS } from '../productListActions';
 
 export default function reducer(state = {}, action = {}) {
     let newState;
