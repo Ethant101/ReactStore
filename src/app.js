@@ -16,7 +16,6 @@ class App extends Component {
         return (
             <Router>
                 <div>
-
                     <Switch>
                         <Route exact path="/" component={LoginPage}/>
                         <Route exact path="/details/:id" component={ProductDetail}/>

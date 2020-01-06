@@ -4,11 +4,24 @@ import {getProductList} from "../store/productListActions";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {ProductsPage} from "./ProductsPage";
+import SmallCartPreview from "./smallCartPreview";
+import CartItem from "./CartItem";
 
 class AddToCart extends React.Component {
     constructor(props) {
         super(props);
     }
+
+    // componentDidMount() {
+    //     this.props.addCartToProps();
+    // }
+    // cartContents = (contents) => {
+    //     return contents.map((item) => {
+    //         return (
+    //             <CartItem item={item} />
+    //         )
+    //     })
+    // };
 
     render() {
         return (
@@ -23,17 +36,18 @@ class AddToCart extends React.Component {
 
 }
 
-function mapStateToProps(reduxState) {
-    // this returned object gets added to props by redux via the connect function below black magic
-    return {
-        productList: reduxState.productReducers.productList
-    };
-}
+// function mapStateToProps(reduxState) {
+//     // this returned object gets added to props by redux via the connect function below black magic
+//     return {
+//         CartList: reduxState.CartReducer.CartList
+//     };
+// }
+//
+// function mapDispatchToProps(dispatch) {
+//     return {
+//         addCartToProps: () => dispatch(getCartContent())
+//     };
+// }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        addProductsToProps: () => dispatch(getProductList())
-    };
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AddToCart));
+// export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AddToCart));
+export default AddToCart;

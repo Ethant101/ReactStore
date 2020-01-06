@@ -1,9 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import {getProductList} from "../store/productListActions";
-import {withRouter} from "react-router-dom";
-import {ProductsPage} from "./ProductsPage";
-//import Logo from 'assets/spiderManArt.png';
+import {Link} from "react-router-dom";
+import store from "../store";
 
 class Header extends React.Component {
     constructor(props) {
@@ -16,8 +13,11 @@ class Header extends React.Component {
     showCart = () => {
 
     };
-    showDropdown = () => {
-
+    CategoryChange = (e) => {
+        store.dispatch({
+            type: 'CATEGORY_CHANGE',
+            to: e, // idk if e is the option value
+        })
     };
     //TODO: Bring in actual cart and increment cart count when items are added
     //TODO: Make Categories a form input dropdown
@@ -28,9 +28,9 @@ class Header extends React.Component {
                 <div className='leftNav'>
                     <div className='logoHeader'>
                     </div>
-                    <h2 className='Products'>Products</h2>
+                    <Link to={'/list'} className='Products'><h2>Products</h2></Link>
                     <form>
-                        <select name="Categories" className='Categories'>
+                        <select onChange={this.CategoryChange} name="Categories" className='Categories'>
                             <option value="Categories">Categories</option>
                             <option value="Phones">Phones</option>
                             <option value="TV">TV</option>
@@ -44,8 +44,9 @@ class Header extends React.Component {
                     {/*<h2 className='Categories'>Categories</h2>*/}
                 </div>
                 <div className='rightNav'>
+
                     <div className='cartCount'>{this.props.cartCount}</div>
-                    <i onClick={this.showCart} className="fas fa-shopping-cart cart"> </i> {/*link to cart page around this i*/}
+                    <Link to='/cart' className='cart'><i onClick={this.showCart} className="fas fa-shopping-cart cart"> </i></Link> {/*link to cart page around this i*/}
                     <i className="dropdown icon"> </i>
                 </div>
             </div>

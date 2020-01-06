@@ -32,7 +32,7 @@ class LoginPage extends React.Component {
     login = () => {
         if(this.state.user === this.loginCred.username &&
             this.state.pass === this.loginCred.password) {
-            window.location = '/list';
+            this.props.history.push('/list');
         }
         else {
             //clears inputs

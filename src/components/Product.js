@@ -7,18 +7,21 @@ class Product extends React.Component {
     constructor(props) {
         super(props);
     }
+
     handleAddToCart = (e) => {
-        console.log(this.props.product);
-        // this.cartCount ++;
-        console.log('added to cart');
+        console.log(this.props.product.id, 'added to cart');
+
         store.dispatch( {
             type:'ADD_TO_CART',
-            product:this.props.products,
-        })
-        // this.productList.push(e.target.value);
-        // this.setState({ products: this.productList, cartCounts: this.cartCount });
-        // console.log(this.state);
+            product:this.props.product,
+            id:this.props.product.id,
+        });
+
+        console.log(store.getState());
+
+
     };
+
     render() {
         return (
             <div key={this.props.product.id} className="item">
@@ -37,7 +40,7 @@ class Product extends React.Component {
                         {/*Additional Details*/}
                     </div>
                     <div className="extra">
-                        <AddToCart id={this.props.product.id} onButtonClick={this.handleAddToCart}/>
+                        <AddToCart product={this.props.product} onButtonClick={this.handleAddToCart}/>
                     </div>
                 </div>
             </div>

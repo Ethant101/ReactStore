@@ -1,58 +1,50 @@
 import React from "react";
+import store from "../store";
+
 import Header from "./header";
 import Footer from "./footer";
+import CartItem from "./CartItem";
+
 
 class CartPage extends React.Component {
     constructor(props) {
         super(props);
     }
+    cartItems = (items) => {
 
+        return items.map((item) => {
+            return (
+                <CartItem product={item.item} id={item.targetId} path={`/details/${item.item.id}`} />
+            )
+        })
+    };
+    totalPrice = () => {
+        let cost = 0;
+        if(store.getState().Cart.length === 0) {
+            return '0.00'
+        }
+        else {
+            for(let i = 0; i < store.getState().Cart.length; i++) {
+                cost += store.getState().Cart[i].item.price
+            }
+            return cost.toFixed(2);
+        }
+    };
     render() {
         return (
             <div>
-                <Header />
-                <div className='cartContent'>
-                    {/*example cart Page*/}
-                    <div className="ui middle aligned divided list">
-                        <div className="item">
-                            <div className="right floated content">
-                                <div className="ui button">Remove</div>
-                            </div>
-                            <img className="ui avatar image" src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6211/6211009_sd.jpg"/>
-                                <div className="content">
-                                    Toshiba - 49” Class – LED - 1080p
-                                </div>
+                <Header cartCount={store.getState().Cart.length}/>
+                <div className='ui middle aligned divided list cartContent'>
+                    {this.cartItems(store.getState().Cart)} {/* Renders cart items*/}
+                    <div className='CartSpecs'> {/* All info in here should be brought in from store */}
+                        <div className='text'>
+                            <span className='total'>Total</span>
+                            <span>{store.getState().Cart.length} Items</span>
+                            <span className='totalPrice'>${this.totalPrice()}</span>
                         </div>
-                        <div className="item">
-                            <div className="right floated content">
-                                <div className="ui button">Remove</div>
-                            </div>
-                            <img className="ui avatar image" src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6290/6290163_sd.jpg"/>
-                                <div className="content">
-                                    LG - 75\" Class - LED - UK6190 Series - 2160p
-                                </div>
+                        <div className='purchaseOuter'>
+                            <button className='purchase'>Confirm Purchase</button>
                         </div>
-                        <div className="item">
-                            <div className="right floated content">
-                                <div className="ui button">Remove</div>
-                            </div>
-                            <img className="ui avatar image" src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5746/5746805_sd.jpg"/>
-                                <div className="content">
-                                    Sharp - 50\" Class - LED - 2160p - Smart
-                                </div>
-                        </div>
-                        <div className="item">
-                            <div className="right floated content">
-                                <div className="ui button">Remove</div>
-                            </div>
-                            <img className="ui avatar image" src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5577/5577872_rd.jpg"/>
-                                <div className="content">
-                                    Apple - AirPods with Charging Case
-                                </div>
-                        </div>
-                    </div>
-                    <div className='CartSpecs'>
-
                     </div>
                 </div>
                 <Footer />

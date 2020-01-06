@@ -42,6 +42,8 @@ html, body {
 }
 .Products {
   margin:0;
+  color:black;
+  font-size:30px;
   padding: 10px 10px;
   border-left: 2px solid #dadfea;
   border-right: 2px solid #dadfea;
@@ -122,6 +124,7 @@ html, body {
 }
 .cart {
   font-size:20px;
+  color:black;
 }
 .cart:hover {
   cursor:pointer;
@@ -285,4 +288,44 @@ html, body {
   display: block;
   position:relative;
   margin:auto auto;
+}
+/*####Product Details end*/
+
+/*######Cart Start###### */
+.cartList {
+  border-bottom:2px solid #4382FF;
+  margin:0;
+}
+.CartSpecs {
+  padding-top:10px;
+  border-top:2px solid #4382FF;
+  height:60px;
+  width:100%;
+}
+.CartSpecs .text {
+  display:flex;
+  justify-content: space-evenly;
+  font-size:20px;
+  border-bottom: 1px solid #dadfea;
+}
+.total {
+  font-weight:bold;
+}
+.totalPrice {
+  color:#305cb6;
+}
+.purchaseOuter {
+  display:flex;
+  justify-content: flex-end;
+  margin:5px;
+}
+.purchase {
+  height:30px;
+  border:none;
+  color:white;
+  background-color: #305cb6;
+  right:0;
+}
+.purchase:hover {
+  background-color: #4382FF;
 }

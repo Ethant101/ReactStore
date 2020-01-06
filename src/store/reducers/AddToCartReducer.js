@@ -6,6 +6,7 @@ export default function AddToCartReducer(state = [], action) {
         case 'ADD_TO_CART': {
             const item = {
                 product: action.product,
+                productId: action.id,
                 id: uuid.v4(),
             };
         }

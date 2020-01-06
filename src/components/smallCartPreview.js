@@ -2,19 +2,25 @@ import React from "react";
 
 
 
-class SmallCartPreview extends React.Component {
+class CartItem extends React.Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
         return (
-            <div className='cartItem'>
-                <div className='itemLeft'>
-                    <img src={item.img} alt='tv' />
-                    <span>${item.price}</span>
+            <div className="item">
+                <div className="right floated content">
+                    <span>{this.props.price}</span>
+                    <div className="ui button">Remove</div>
                 </div>
-                <i className="fas fa-times-circle x"> </i>
+                <img className="ui avatar image" src={this.props.img}/>
+                <div className="content">
+                    {this.props.title}
+                </div>
             </div>
         )
     }
 }
 
-export default SmallCartPreview;
+export default CartItem;
 

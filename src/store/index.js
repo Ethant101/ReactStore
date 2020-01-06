@@ -5,8 +5,8 @@ import CartReducer from "./reducers/CartReducer";
 import axios from 'axios';
 
 const reducer = combineReducers({
-    productReducers,
-    //CartReducer
+    //productReducers,
+    Cart:CartReducer
 });
 
 const store = createStore(reducer, applyMiddleware(axiosMiddleware(axios)),);

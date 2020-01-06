@@ -1,13 +1,13 @@
 import React from 'react';
+import store from "../store";
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import axios from "axios";
 
 
 import Header from './header';
 import Footer from './footer';
 import { getProductList } from '../store/productListActions';
-import AddToCart from "./AddToCart";
-import store from "../store";
 import Product from "./Product";
 
 export class ProductsPage extends React.Component {
@@ -15,46 +15,39 @@ export class ProductsPage extends React.Component {
         super(props);
         this.state = {
             products: [],
-            cartCounts: 0
+            cartCount: 0
         };
-        this.cartCount = 0; //number that state count gets assigned
         this.productList = []; //array of product ids that state products gets assigned
     }
-
+    componentWillMount() {
+        store.subscribe(() => this.forceUpdate())
+    }
     //products is array of ids of products from api
     componentDidMount() {
-        this.props.addProductsToProps();
-        // axios.get('https://my-json-server.typicode.com/tdmichaelis/json-api/products')
-        //     .then((res) => {
-        //         this.setState({products: res.data})
-        //     })
+        //this.props.addProductsToProps();
+        axios.get('https://my-json-server.typicode.com/tdmichaelis/json-api/products')
+            .then((res) => {
+                this.setState({products: res.data})
+            })
     }
-
-
 
     listOfProducts = (products) => {
         return products.map((item) => {
                 return (
-                    <Product product={item} path={`/details/${item.id}`}/>
+                    <Product key={item.id} product={item} path={`/details/${item.id}`}/>
                 );
             }
         );
     };
 
-    // <button onClick={this.handleAddToCart}
-    // value={item.id}
-    // className="ui right floated primary button">
-    // Add to Cart
-    // <i className="right chevron icon"> </i>
-    // </button>
 
     render() {
         return (
             <div>
-                <Header cartCount={this.state.cartCounts}/>
+                <Header cartCount={store.getState().Cart.length} />
                 <div className="ui divided items productContainer">
                     {/*getting product list from the prop added by the redux map state to props function*/}
-                    {this.listOfProducts(this.props.productList)}
+                    {this.listOfProducts(this.state.products)}
                 </div>
                 <Footer/>
             </div>
@@ -62,18 +55,18 @@ export class ProductsPage extends React.Component {
     }
 }
 
-function mapStateToProps(reduxState) {
-    // this returned object gets added to props by redux via the connect function below black magic
-    return {
-        productList: reduxState.productReducers.productList
-    };
-}
+// function mapStateToProps(reduxState) {
+//     // this returned object gets added to props by redux via the connect function below black magic
+//     return {
+//         productList: reduxState.productReducers.productList
+//     };
+// }
+//
+// function mapDispatchToProps(dispatch) {
+//     return {
+//         addProductsToProps: () => dispatch(getProductList())
+//     };
+// }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        addProductsToProps: () => dispatch(getProductList())
-    };
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProductsPage));
-//export default ProductsPage;
+// export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProductsPage));
+export default ProductsPage;
