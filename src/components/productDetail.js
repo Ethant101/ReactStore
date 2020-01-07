@@ -4,6 +4,8 @@ import $ from 'jquery';
 import {Link} from "react-router-dom";
 import Header from "./header";
 import Footer from "./footer";
+import AddToCart from "./AddToCart";
+import store from "../store";
 
 class ProductDetail extends React.Component {
     constructor(props) {
@@ -26,6 +28,20 @@ class ProductDetail extends React.Component {
 
     path = `/list`;
 
+    handleAddToCart = (e) => {
+        console.log(this.props.product.id, 'added to cart');
+
+        store.dispatch( {
+            type:'ADD_TO_CART',
+            product:this.props.product,
+            id:this.props.product.id,
+        });
+
+        console.log(store.getState());
+
+
+    };
+
     render() {
         let id = this.props.match.params.id;
         console.log('------->id', id);
@@ -42,7 +58,7 @@ class ProductDetail extends React.Component {
                             <img src={this.state.product.img}/>
                         </div>
                         <div className="description">
-                            <div className="ui header">We've auto-chosen a profile image for you.</div>
+                            <div className="ui header"></div>
                             <p>{this.state.product.description}</p>
                             <p>{this.state.product.rating}</p>
                         </div>
@@ -51,9 +67,8 @@ class ProductDetail extends React.Component {
                         <div className="ui black deny button">
                             <Link to={this.path}>Return To Home</Link>
                         </div>
-                        <div className="ui positive right labeled icon button">
-                            Add To Cart
-                            <i className="checkmark icon"> </i>
+                        <div className="ui positive right labeled icon ">
+                            <AddToCart product={this.state.product} onButtonClick={this.handleAddToCart}/>
                         </div>
                     </div>
                 </div>
