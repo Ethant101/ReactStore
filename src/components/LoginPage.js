@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from "react-router-dom";
 
 class LoginPage extends React.Component {
     state = {
@@ -62,6 +61,11 @@ class LoginPage extends React.Component {
                             type="password"
                             name="password"
                             onChange={this.handlePass}
+                            onKeyPress={(event) => {
+                                if (event.key === "Enter") {
+                                    this.login()
+                                }
+                            }}
                             placeholder="Password"
                             value={this.state.pass}/>
                     </div>

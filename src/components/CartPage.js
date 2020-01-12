@@ -7,17 +7,17 @@ import CartItem from "./CartItem";
 
 
 class CartPage extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     cartItems = (items) => {
 
         return items.map((item) => {
             return (
-                <CartItem product={item.item} id={item.targetId} path={`/details/${item.item.id}`} />
+                <CartItem key={item.id = "cart"} product={item.item} id={item.targetId} path={`/details/${item.item.id}`} />
             )
         })
     };
+    componentWillMount() {
+        store.subscribe(() => this.forceUpdate())
+    }
     totalPrice = () => {
         let cost = 0;
         if(store.getState().Cart.length === 0) {
@@ -28,6 +28,18 @@ class CartPage extends React.Component {
                 cost += store.getState().Cart[i].item.price
             }
             return cost.toFixed(2);
+        }
+    };
+    purchase = () => {
+        if(store.getState().Cart.length === 0) {
+            alert('You must have items in the cart before you can purchase!');
+            this.props.history.push('/list');
+        } else {
+            this.props.history.push('/purchase');
+            // console.log(store.getState())
+            store.dispatch({
+                type:"CLEAR_CART"
+            })
         }
     };
     render() {
@@ -43,7 +55,7 @@ class CartPage extends React.Component {
                             <span className='totalPrice'>${this.totalPrice()}</span>
                         </div>
                         <div className='purchaseOuter'>
-                            <button className='purchase'>Confirm Purchase</button>
+                            <button className='purchase' onClick={this.purchase}>Confirm Purchase</button>
                         </div>
                     </div>
                 </div>
@@ -52,5 +64,7 @@ class CartPage extends React.Component {
         )
     }
 }
+
+
 
 export default CartPage;

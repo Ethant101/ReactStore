@@ -1,16 +1,13 @@
 import React from "react";
-import store from "../store";
-import {getProductList} from "../store/productListActions";
-import {withRouter} from "react-router-dom";
-import {connect} from "react-redux";
-import {ProductsPage} from "./ProductsPage";
-import SmallCartPreview from "./smallCartPreview";
-import CartItem from "./CartItem";
+// import store from "../store";
+// import {getProductList} from "../store/productListActions";
+// import {withRouter} from "react-router-dom";
+// import {connect} from "react-redux";
+// import {ProductsPage} from "./ProductsPage";
+// import SmallCartPreview from "./smallCartPreview";
+// import CartItem from "./CartItem";
 
 class AddToCart extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     // componentDidMount() {
     //     this.props.addCartToProps();

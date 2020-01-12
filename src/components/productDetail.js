@@ -1,11 +1,11 @@
 import React from 'react';
 import axios from 'axios';
-import $ from 'jquery';
 import {Link} from "react-router-dom";
 import Header from "./header";
 import Footer from "./footer";
 import AddToCart from "./AddToCart";
 import store from "../store";
+import StarRating from "./StarRating";
 
 class ProductDetail extends React.Component {
     constructor(props) {
@@ -13,6 +13,9 @@ class ProductDetail extends React.Component {
         this.state = {
             product: {}
         };
+    }
+    componentWillMount() {
+        store.subscribe(() => this.forceUpdate())
     }
 
     componentDidMount() {
@@ -29,12 +32,12 @@ class ProductDetail extends React.Component {
     path = `/list`;
 
     handleAddToCart = (e) => {
-        console.log(this.props.product.id, 'added to cart');
+        console.log(this.state.product.id, 'added to cart');
 
         store.dispatch( {
             type:'ADD_TO_CART',
-            product:this.props.product,
-            id:this.props.product.id,
+            product:this.state.product,
+            id:this.state.product.id,
         });
 
         console.log(store.getState());
@@ -48,19 +51,22 @@ class ProductDetail extends React.Component {
 
         return (
             <div>
-                <Header />
+                <Header cartCount={store.getState().Cart.length} />
                 <div className="ui modal">
                     <div className="header">
                         {this.state.product.title}
                     </div>
                     <div className="image content">
                         <div className="ui medium image">
-                            <img src={this.state.product.img}/>
+                            <img src={this.state.product.img} alt={this.state.product.img}/>
                         </div>
                         <div className="description">
-                            <div className="ui header"></div>
+                            <div className="ui header">
+                                <StarRating rating={this.state.product.rating} />
+                                <p>{this.state.product.rating}</p>
+                            </div>
                             <p>{this.state.product.description}</p>
-                            <p>{this.state.product.rating}</p>
+
                         </div>
                     </div>
                     <div className="actions">

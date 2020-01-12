@@ -1,13 +1,12 @@
 import React from 'react';
 import store from "../store";
-import { Link, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
+
 import axios from "axios";
 
 
 import Header from './header';
 import Footer from './footer';
-import { getProductList } from '../store/productListActions';
+// import { getProductList } from '../store/productListActions';
 import Product from "./Product";
 
 export class ProductsPage extends React.Component {
@@ -15,7 +14,7 @@ export class ProductsPage extends React.Component {
         super(props);
         this.state = {
             products: [],
-            cartCount: 0
+            activeCategory: "Category"
         };
         this.productList = []; //array of product ids that state products gets assigned
     }
@@ -40,11 +39,18 @@ export class ProductsPage extends React.Component {
         );
     };
 
+    handleCategoryChange = (e) => {
+        this.setState({
+            activeCategory: e,
+        })
+
+    };
+
 
     render() {
         return (
             <div>
-                <Header cartCount={store.getState().Cart.length} />
+                <Header cartCount={store.getState().Cart.length} handleCategoryChange={this.handleCategoryChange}/>
                 <div className="ui divided items productContainer">
                     {/*getting product list from the prop added by the redux map state to props function*/}
                     {this.listOfProducts(this.state.products)}

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import store from "../store";
+
 
 class Header extends React.Component {
     constructor(props) {
@@ -13,14 +13,7 @@ class Header extends React.Component {
     showCart = () => {
 
     };
-    CategoryChange = (e) => {
-        store.dispatch({
-            type: 'CATEGORY_CHANGE',
-            to: e, // idk if e is the option value
-        })
-    };
-    //TODO: Bring in actual cart and increment cart count when items are added
-    //TODO: Make Categories a form input dropdown
+    //TODO: Make Categories change what displays
     render() {
         // const [isShown, setIsShown] = useState(false);
         return (
@@ -30,7 +23,7 @@ class Header extends React.Component {
                     </div>
                     <Link to={'/list'} className='Products'><h2>Products</h2></Link>
                     <form>
-                        <select onChange={this.CategoryChange} name="Categories" className='Categories'>
+                        <select onChange={this.props.handleCategoryChange} name="Categories" className='Categories'>
                             <option value="Categories">Categories</option>
                             <option value="Phones">Phones</option>
                             <option value="TV">TV</option>

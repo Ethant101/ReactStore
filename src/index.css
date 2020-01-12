@@ -66,6 +66,7 @@ html, body {
   background-color:#4382FF;
   color:white;
   border-radius: 3px;
+  cursor:pointer;
 }
 .Categories:hover .catDrop {
   display:block;
@@ -139,6 +140,7 @@ html, body {
   min-height:0;
   max-height:150px;
   max-width:100px;
+  object-fit: contain;
   margin-left:20px;
 }
 .productContainer {
@@ -235,10 +237,11 @@ html, body {
 }
 .loginModal {
   height:250px;
-  width:200px;
+  width:500px;
   box-shadow: 0 0 6px 2px rgba(0,0,0,0.55);
   background-color:white;
   border-radius: 5px;
+  margin-bottom: 250px;
 }
 .loginHeader {
   display:flex;
